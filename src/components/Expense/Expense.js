@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 
 const Expense = (props) => {
   const location = useLocation()
 
-  const [amount, setAmount] = useState(location.state.amount);
-  const [category, setCategory] = useState(location.state.category);
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
   const [notes, setNotes] = useState("");
   const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
 
 
+   useEffect(()=>{
+     if(location?.state?.amount === undefined){
+        setAmount('')
+        setCategory('')
+     }else{
+      setAmount(location.state.amount)
+      setCategory(location.state.category)
+     }
+   },[])
+   
   //   const handleSave = (event) => {
   //     event.preventDefault();
   //     const expense = {
