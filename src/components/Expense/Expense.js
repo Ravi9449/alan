@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 const Expense = (props) => {
-  const [amount, setAmount] = useState(props.amount);
-  const [category, setCategory] = useState(props.category);
+  const location = useLocation()
+
+  const [amount, setAmount] = useState(location.state.amount);
+  const [category, setCategory] = useState(location.state.category);
   const [notes, setNotes] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
+
 
   //   const handleSave = (event) => {
   //     event.preventDefault();
@@ -33,7 +36,7 @@ const Expense = (props) => {
         Amount:
         <input
           type="number"
-          value={props.amount}
+          value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
       </label>
@@ -42,7 +45,7 @@ const Expense = (props) => {
         Category:
         <input
           type="text"
-          value={props.category}
+          value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
       </label>

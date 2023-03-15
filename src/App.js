@@ -7,19 +7,11 @@ import History from "./components/History/History";
 import Tracker from "./components/Tracker/Tracker";
 
 function App() {
-  const [amount, setAmount] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [notes, setNotes] = React.useState("");
-  const [date, setDate] = React.useState("");
 
-  const getExpenseData = (amount, category) => {
-    setAmount(amount);
-    setCategory(category);
-  };
 
   return (
     <div>
-      <Alan sendExpenseData={getExpenseData} />
+      <Alan />
       <h1>Welcome to Expense Tracker</h1>
       <nav>
         <NavLink to="/">Dashboard</NavLink>
@@ -32,7 +24,7 @@ function App() {
         <Route path="/tracker" element={<Tracker />} />
         <Route
           path="/expense"
-          element={<Expense amount={amount} category={category} />}
+          element={<Expense  />}
         />
       </Routes>
     </div>

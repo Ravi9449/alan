@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Alan(props) {
   const navigate = useNavigate();
+ 
   function handleNavigate(page) {
     if (page == "dashboard") {
       navigate(`/`);
@@ -13,7 +14,8 @@ function Alan(props) {
   }
 
   function handleExpense(amount, category) {
-    navigate("/expense");
+    let send_data = {amount,category}
+    navigate("/expense",{state:send_data});
   }
 
   useEffect(() => {
@@ -23,12 +25,8 @@ function Alan(props) {
         if (commandData.command === "test") {
           console.log("Welcome to the world");
         } else if (commandData.command === "navigate") {
-          console.log(commandData.page);
           handleNavigate(commandData.page);
         } else if (commandData.command === "expense") {
-          console.log(commandData.amount);
-          console.log(commandData.category);
-          props.sendExpenseData(commandData.amount, commandData.category);
           handleExpense(commandData.amount, commandData.category);
         }
       },
