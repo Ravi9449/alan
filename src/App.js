@@ -3,6 +3,8 @@ import { NavLink, Routes, Route } from "react-router-dom";
 import Alan from "./components/Alan/Alan";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Expense from "./components/Expense/Expense";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 import History from "./components/History/History";
 import Tracker from "./components/Tracker/Tracker";
 
@@ -19,22 +21,13 @@ function App() {
 
   return (
     <div>
+      <div>
+        <Header />
+      </div>
       <Alan sendExpenseData={getExpenseData} />
-      <h1>Welcome to Expense Tracker</h1>
-      <nav>
-        <NavLink to="/">Dashboard</NavLink>
-        <NavLink to="/history">History</NavLink>
-        <NavLink to="/tracker">Tracker</NavLink>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/tracker" element={<Tracker />} />
-        <Route
-          path="/expense"
-          element={<Expense amount={amount} category={category} />}
-        />
-      </Routes>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
