@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useNavigate } from "react-router-dom";
 
-function Alan() {
+function Alan(props) {
   const navigate = useNavigate();
   function handleNavigate(page) {
     if (page == "dashboard") {
@@ -12,7 +12,7 @@ function Alan() {
     }
   }
 
-  function handleExpense() {
+  function handleExpense(amount, category) {
     navigate("/expense");
   }
 
@@ -26,7 +26,10 @@ function Alan() {
           console.log(commandData.page);
           handleNavigate(commandData.page);
         } else if (commandData.command === "expense") {
-          handleExpense();
+          console.log(commandData.amount);
+          console.log(commandData.category);
+          props.sendExpenseData(commandData.amount, commandData.category);
+          handleExpense(commandData.amount, commandData.category);
         }
       },
     });

@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Expense = ({ onSave, onCancel }) => {
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
+const Expense = (props) => {
+  const [amount, setAmount] = useState(props.amount);
+  const [category, setCategory] = useState(props.category);
   const [notes, setNotes] = useState("");
   const [date, setDate] = useState("");
 
-  const handleSave = (event) => {
-    event.preventDefault();
-    const expense = {
-      amount: amount,
-      category: category,
-      notes: notes,
-      date: date,
-    };
-    onSave(expense);
-    setAmount("");
-    setCategory("");
-    setNotes("");
-    setDate("");
-  };
+  //   const handleSave = (event) => {
+  //     event.preventDefault();
+  //     const expense = {
+  //       amount: amount,
+  //       category: category,
+  //       notes: notes,
+  //       date: date,
+  //     };
+  //     // onSave(expense);
+  //     setAmount("");
+  //     setCategory("");
+  //     setNotes("");
+  //     setDate("");
+  //   };
 
   let navigate = useNavigate();
   const routeDashboard = () => {
@@ -33,7 +33,7 @@ const Expense = ({ onSave, onCancel }) => {
         Amount:
         <input
           type="number"
-          value={amount}
+          value={props.amount}
           onChange={(e) => setAmount(e.target.value)}
         />
       </label>
@@ -42,7 +42,7 @@ const Expense = ({ onSave, onCancel }) => {
         Category:
         <input
           type="text"
-          value={category}
+          value={props.category}
           onChange={(e) => setCategory(e.target.value)}
         />
       </label>
@@ -65,10 +65,10 @@ const Expense = ({ onSave, onCancel }) => {
         />
       </label>
       <br />
-      <button type="submit">Save</button>
+      {/* <button type="submit">Save</button>
       <button type="button" onClick={onCancel}>
         Cancel
-      </button>
+      </button> */}
       <br />
       <button onClick={routeDashboard}>back</button>
     </div>
